@@ -20,7 +20,7 @@ class Config extends \Ilch\Config\Install
             ],
             'en_EN' => [
                 'name' => 'Team',
-                'description' => 'With this module can you add and change your Team site.',
+                'description' => 'With this module you can add and change your team site.',
             ],
         ],
         'ilchCore' => '2.0.0',

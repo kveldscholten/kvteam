@@ -10,5 +10,12 @@ return [
     'users' => 'Users',
     'members' => 'Members',
     'selectMembers' => 'Select members',
-    'noTeams' => 'No Teams available',
+    'noTeams' => 'No teams available',
+
+    'privateMessage' => 'Private message',
+    'email' => 'E-Mail',
+    'profileHomepage' => 'Homepage',
+    'profileFacebook' => 'Facebook',
+    'profileTwitter' => 'Twitter',
+    'profileGoogle' => 'Google+',
 ];
