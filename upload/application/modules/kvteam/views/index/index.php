@@ -21,6 +21,7 @@ $userMapper = $this->get('userMapper');
                                         <img class="thumbnail" src="<?=$this->getStaticUrl().'../'.$this->escape($user->getAvatar()) ?>" title="<?=$this->escape($user->getName()) ?>">
                                     </div>
                                     <div class="contact">
+                                        <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'profil', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa fa-user" title="<?=$this->getTrans('profile') ?>"></a>
                                         <?php if ($this->getUser() AND $this->getUser()->getId() != $this->escape($user->getId())): ?>
                                             <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'panel', 'action' => 'dialognew', 'id' => $user->getId()]) ?>" class="fa fa-comment" title="<?=$this->getTrans('privateMessage') ?>"></a>
                                         <?php endif; ?>
@@ -42,7 +43,9 @@ $userMapper = $this->get('userMapper');
                                     </div>
                                 </div>
                                 <div class="user-name">
-                                    <?=$this->escape($user->getName()) ?>
+                                    <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'profil', 'action' => 'index', 'user' => $user->getId()]) ?>" title="<?=$this->escape($user->getName()) ?>s <?=$this->getTrans('profile') ?>">
+                                        <?=$this->escape($user->getName()) ?>
+                                    </a>
                                 </div>
                                 <div class="user-place">
                                     <?=$this->escape($user->getCity()) ?>
