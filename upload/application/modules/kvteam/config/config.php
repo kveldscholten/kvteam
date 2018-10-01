@@ -10,7 +10,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvteam',
-        'version' => '1.1',
+        'version' => '1.2',
         'icon_small' => 'fa-users',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
@@ -23,7 +23,7 @@ class Config extends \Ilch\Config\Install
                 'description' => 'With this module you can add and change your team site.',
             ],
         ],
-        'ilchCore' => '2.0.0',
+        'ilchCore' => '2.1.15',
         'phpVersion' => '5.6'
     ];
 
@@ -45,11 +45,16 @@ class Config extends \Ilch\Config\Install
                 `userIds` VARCHAR(255) NOT NULL,
                 `position` INT(11) NOT NULL DEFAULT 0,
                 PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1';
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci AUTO_INCREMENT=1';
     }
 
     public function getUpdate($installedVersion)
     {
-        
+        switch ($installedVersion) {
+            case "1.0":
+            case "1.1":
+                // Convert tables to new character set and collate
+                $this->db()->query('ALTER TABLE `[prefix]_kvteam` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
+        }
     }
 }
