@@ -10,19 +10,19 @@ $profileFieldsTranslation = $this->get('profileFieldsTranslation');
     <?php if ($this->get('teams')): ?>
         <div class="row">
             <?php foreach ($this->get('teams') as $teamlist): ?>
-                <div class="col-lg-12 team-name">
+                <div class="col-xl-12 team-name">
                     <h3><?=$this->escape($teamlist->getTitle()) ?></h3>
                 </div>
-                <div class="col-lg-12">
+                <div class="col-xl-12">
                     <?php $userIds = explode(',', $teamlist->getUserIds()); ?>
                     <?php foreach ($userIds as $userId): ?>
                         <?php $user = $userMapper->getUserById($userId); ?>
                         <?php if ($user AND $user->getConfirmed() == 1): ?>
                             <?php $profileFieldsContent = $profileFieldsContentMapper->getProfileFieldContentByUserId($user->getId()); ?>
-                            <div class="col-lg-3">
+                            <div class="col-xl-3">
                                 <div class="user-image">
                                     <div class="image">
-                                        <img class="thumbnail" src="<?=$this->getStaticUrl().'../'.$this->escape($user->getAvatar()) ?>" title="<?=$this->escape($user->getName()) ?>">
+                                        <img class="img-thumbnail" src="<?=$this->getStaticUrl().'../'.$this->escape($user->getAvatar()) ?>" title="<?=$this->escape($user->getName()) ?>">
                                     </div>
                                     <div class="contact">
                                         <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'profil', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa fa-user" title="<?=$this->getTrans('profile') ?>"></a>
