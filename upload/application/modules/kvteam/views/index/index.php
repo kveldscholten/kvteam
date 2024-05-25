@@ -25,12 +25,12 @@ $profileFieldsTranslation = $this->get('profileFieldsTranslation');
                                         <img class="img-thumbnail" src="<?=$this->getStaticUrl().'../'.$this->escape($user->getAvatar()) ?>" title="<?=$this->escape($user->getName()) ?>">
                                     </div>
                                     <div class="contact">
-                                        <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'profil', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa fa-user" title="<?=$this->getTrans('profile') ?>"></a>
+                                        <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'profil', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa-solid fa-user" title="<?=$this->getTrans('profile') ?>"></a>
                                         <?php if ($this->getUser() AND $this->getUser()->getId() != $this->escape($user->getId())): ?>
-                                            <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'panel', 'action' => 'dialognew', 'id' => $user->getId()]) ?>" class="fa fa-comment" title="<?=$this->getTrans('privateMessage') ?>"></a>
+                                            <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'panel', 'action' => 'dialognew', 'id' => $user->getId()]) ?>" class="fa-regular fa-comment" title="<?=$this->getTrans('privateMessage') ?>"></a>
                                         <?php endif; ?>
                                         <?php if ($user->getOptMail() == 1 AND $this->getUser() AND $this->getUser()->getId() != $user->getID()): ?>
-                                            <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'mail', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa fa-envelope" title="<?=$this->getTrans('email') ?>"></a>
+                                            <a href="<?=$this->getUrl(['module' => 'user', 'controller' => 'mail', 'action' => 'index', 'user' => $user->getId()]) ?>" class="fa-solid fa-envelope" title="<?=$this->getTrans('email') ?>"></a>
                                         <?php endif; ?>
 
                                         <?php foreach ($profileIconFields as $profileIconField) {

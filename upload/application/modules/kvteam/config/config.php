@@ -10,8 +10,8 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvteam',
-        'version' => '1.2',
-        'icon_small' => 'fa-users',
+        'version' => '1.3.0',
+        'icon_small' => 'fa-solid fa-users',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
             'de_DE' => [
@@ -23,8 +23,8 @@ class Config extends \Ilch\Config\Install
                 'description' => 'With this module you can add and change your team site.',
             ],
         ],
-        'ilchCore' => '2.1.15',
-        'phpVersion' => '5.6'
+        'ilchCore' => '2.2.0',
+        'phpVersion' => '7.3'
     ];
 
     public function install()
@@ -55,6 +55,10 @@ class Config extends \Ilch\Config\Install
             case "1.1":
                 // Convert tables to new character set and collate
                 $this->db()->query('ALTER TABLE `[prefix]_kvteam` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;');
+            case "1.2":
+                $this->db()->update('modules', ['icon_small' => $this->config['icon_small']], ['key' => $this->config['key']])->execute();
         }
+
+        return '"' . $this->config['key'] . '" Update-function executed.';
     }
 }
