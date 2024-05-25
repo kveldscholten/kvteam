@@ -1,5 +1,5 @@
 <h1><?=$this->getTrans('manage') ?></h1>
-<form class="form-horizontal" method="POST" action="">
+<form method="POST" action="">
     <?=$this->getTokenField() ?>
     <div class="table-responsive">
         <table class="table table-hover table-striped">
@@ -27,7 +27,7 @@
                             <td><?=$this->getDeleteCheckbox('check_teams', $team->getId()) ?></td>
                             <td><?=$this->getEditIcon(['action' => 'treat', 'id' => $team->getId()]) ?></td>
                             <td><?=$this->getDeleteIcon(['action' => 'del', 'id' => $team->getId()]) ?></td>
-                            <td><i class="fa fa-sort"></i></td>
+                            <td><i class="fa-solid fa-sort"></i></td>
                             <td><?=$this->escape($team->getTitle()) ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -45,13 +45,13 @@
             <input type="hidden" class="content_savebox_hidden" name="action" value="" />
             <div class="btn-group dropup">
                 <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                    <?=$this->getTrans('selected') ?> <span class="caret"></span>
+                    <?=$this->getTrans('selected') ?>
                 </button>
                 <ul class="dropdown-menu listChooser" role="menu">
                     <li><a class="dropdown-item" href="#" data-hiddenkey="delete"><?=$this->getTrans('delete') ?></a></li>
                 </ul>
             </div>
-            <button type="submit" class="save_button btn btn-default" name="saveTeam" value="save">
+            <button type="submit" class="save_button btn btn-secondary" name="saveTeam" value="save">
                 <?=$this->getTrans('saveButton') ?>
             </button>
         </div>
