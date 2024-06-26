@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Kevin Veldscholten
  * @package ilch
@@ -36,8 +37,7 @@ class Index extends \Ilch\Controller\Admin
             $items[0]['active'] = true;
         }
 
-        $this->getLayout()->addMenu
-        (
+        $this->getLayout()->addMenu(
             'menuTeam',
             $items
         );
@@ -72,39 +72,43 @@ class Index extends \Ilch\Controller\Admin
         $this->getView()->set('teams', $teamMapper->getTeams());
     }
 
-    public function treatAction() 
+    public function treatAction()
     {
         $teamMapper = new TeamMapper();
         $userMapper = new UserMapper();
 
+        $team = new TeamModel();
         if ($this->getRequest()->getParam('id')) {
             $this->getLayout()->getAdminHmenu()
                 ->add($this->getTranslator()->trans('menuTeam'), ['action' => 'index'])
                 ->add($this->getTranslator()->trans('edit'), ['action' => 'treat']);
 
-            $this->getView()->set('team', $teamMapper->getTeamById($this->getRequest()->getParam('id')));
+            $team = $teamMapper->getTeamById($this->getRequest()->getParam('id'));
+
+            if (!$team) {
+                $this->redirect()
+                    ->withMessage('notfound', 'danger')
+                    ->to(['action' => 'index']);
+            }
         } else {
             $this->getLayout()->getAdminHmenu()
                 ->add($this->getTranslator()->trans('menuTeam'), ['action' => 'index'])
                 ->add($this->getTranslator()->trans('add'), ['action' => 'treat']);
         }
+        $this->getView()->set('team', $team);
 
         if ($this->getRequest()->isPost()) {
             $validation = Validation::create($this->getRequest()->getPost(), [
-                'title' => 'required|unique:kvteam,title,'.$this->getRequest()->getParam('id'),
+                'title' => 'required|unique:kvteam,title,' . $this->getRequest()->getParam('id'),
                 'userIds' => 'required'
             ]);
 
             if ($validation->isValid()) {
                 $userIds = implode(",", $this->getRequest()->getPost('userIds'));
 
-                $teamModel = new TeamModel();
-                if ($this->getRequest()->getParam('id')) {
-                    $teamModel->setId($this->getRequest()->getParam('id'));
-                }
-                $teamModel->setTitle($this->getRequest()->getPost('title'))
+                $team->setTitle($this->getRequest()->getPost('title'))
                     ->setUserIds($userIds);
-                $teamMapper->save($teamModel);
+                $teamMapper->save($team);
 
                 $this->redirect()
                     ->withMessage('saveSuccess')

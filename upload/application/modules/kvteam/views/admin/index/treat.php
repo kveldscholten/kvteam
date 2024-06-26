@@ -1,6 +1,13 @@
+<?php
+
+/** @var \Ilch\View $this */
+
+/** @var Modules\Kvteam\Models\Team $team */
+$team = $this->get('team');
+?>
 <link href="<?=$this->getModuleUrl('static/css/teams.css') ?>" rel="stylesheet">
 
-<h1><?=($this->get('team') != '') ? $this->getTrans('edit') : $this->getTrans('add') ?></h1>
+<h1><?=$this->getTrans($team->getId() ? 'edit' : 'add') ?></h1>
 <form method="POST" action="" enctype="multipart/form-data">
     <?=$this->getTokenField() ?>
     <div class="row mb-3<?=$this->validation()->hasError('title') ? ' has-error' : '' ?>">
@@ -12,7 +19,7 @@
                    class="form-control"
                    id="title"
                    name="title"
-                   value="<?=($this->get('team') != '') ? $this->escape($this->get('team')->getTitle()) : $this->originalInput('title') ?>" />
+                   value="<?=$this->escape($this->originalInput('title', $team->getTitle())) ?>" />
         </div>
     </div>
     <div class="row mb-3<?=$this->validation()->hasError('userIds') ? ' has-error' : '' ?>">
@@ -25,18 +32,10 @@
                     name="userIds[]"
                     data-placeholder="<?=$this->getTrans('selectMembers') ?>"
                     multiple>
-                <?php foreach ($this->get('userList') as $userList): ?>
-                    <option value="<?=$userList->getId() ?>"
-                        <?php if ($this->get('team') != '') {
-                            $userIds = explode(',', $this->get('team')->getUserIds());
-                            foreach ($userIds as $userId) {
-                                if ($userList->getId() == $userId) {
-                                    echo 'selected="selected"';
-                                    break;
-                                }
-                            }
-                        }
-                        ?>>
+                <?php foreach ($this->get('userList') as $userList) :
+                    $userIds = explode(',', $team->getUserIds());
+                    ?>
+                    <option value="<?=$userList->getId() ?>" <?=(in_array($userList->getId(), $userIds) ? 'selected="selected"' : '') ?>>
                         <?=$this->escape($userList->getName()) ?>
                     </option>
                 <?php endforeach; ?>
@@ -44,7 +43,7 @@
         </div>
     </div>
 
-    <?=($this->get('team') != '') ? $this->getSaveBar('edit') : $this->getSaveBar('add') ?>
+    <?=$this->getSaveBar($team->getId() ? 'edit' : 'add') ?>
 </form>
 
 <script>
