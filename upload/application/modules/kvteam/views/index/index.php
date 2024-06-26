@@ -18,7 +18,7 @@ $profileFieldsTranslation = $this->get('profileFieldsTranslation');
                     <?php $user = $userMapper->getUserById($userId); ?>
                     <?php if ($user AND $user->getConfirmed() == 1): ?>
                         <?php $profileFieldsContent = $profileFieldsContentMapper->getProfileFieldContentByUserId($user->getId()); ?>
-                        <div class="col-xl-2">
+                        <div class="col-xl-3">
                             <div class="user-image">
                                 <div class="image">
                                     <img class="img-thumbnail" src="<?=$this->getStaticUrl().'../'.$this->escape($user->getAvatar()) ?>" title="<?=$this->escape($user->getName()) ?>">
