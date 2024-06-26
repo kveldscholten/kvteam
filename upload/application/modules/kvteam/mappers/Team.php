@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Kevin Veldscholten
  * @package ilch
@@ -14,9 +15,9 @@ class Team extends \Ilch\Mapper
      * Gets the Teams.
      *
      * @param array $where
-     * @return TeamModel[]|array
+     * @return TeamModel[]
      */
-    public function getTeams($where = [])
+    public function getTeams(array $where = []): array
     {
         $entryArray = $this->db()->select('*')
             ->from('kvteam')
@@ -46,22 +47,24 @@ class Team extends \Ilch\Mapper
     /**
      * Get Team by given Id.
      *
-     * @param integer $id
+     * @param int $id
      * @return TeamModel|null
      */
-    public function getTeamById($id)
+    public function getTeamById(int $id): ?TeamModel
     {
         $team = $this->getTeams(['id' => $id]);
 
-        return reset($team);
+        return reset($team) ?: null;
     }
 
     /**
      * Updates the position of the team.
      *
-     * @param int $id, int $position
+     * @param int $id
+     * @param int $position
      */
-    public function updatePositionById($id, $position) {
+    public function updatePositionById(int $id, int $position)
+    {
         $this->db()->update('kvteam')
             ->values(['position' => $position])
             ->where(['id' => $id])
@@ -74,7 +77,7 @@ class Team extends \Ilch\Mapper
      * @param int $teamId
      * @param int $i
      */
-    public function sort($teamId, $i)
+    public function sort(int $teamId, int $i)
     {
         $this->db()->update('kvteam')
             ->values(['position' => $i])
@@ -110,13 +113,12 @@ class Team extends \Ilch\Mapper
     /**
      * Delete Team with given Id.
      *
-     * @param integer $id
+     * @param int $id
      */
-    public function delete($id)
+    public function delete(int $id)
     {
         $this->db()->delete('kvteam')
             ->where(['id' => $id])
             ->execute();
-
     }
 }

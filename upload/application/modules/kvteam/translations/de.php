@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Kevin Veldscholten
  * @package ilch
@@ -18,4 +19,6 @@ return [
     'profileFacebook' => 'Facebook',
     'profileTwitter' => 'Twitter',
     'profileGoogle' => 'Google+',
+
+    'notfound' => 'Eintrag nicht gefunden',
 ];

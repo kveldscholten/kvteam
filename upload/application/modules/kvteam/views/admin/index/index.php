@@ -1,3 +1,10 @@
+<?php
+
+/** @var \Ilch\View $this */
+
+/** @var Modules\Kvteam\Models\Team[] $teams */
+$teams = $this->get('teams');
+?>
 <h1><?=$this->getTrans('manage') ?></h1>
 <form method="POST" action="">
     <?=$this->getTokenField() ?>
@@ -20,8 +27,8 @@
                 </tr>
             </thead>
             <tbody>
-                <?php if ($this->get('teams')): ?>
-                    <?php foreach ($this->get('teams') as $team): ?>
+                <?php if ($teams): ?>
+                    <?php foreach ($teams as $team) : ?>
                         <tr>
                             <input type="hidden" name="items[]" value="<?=$team->getId() ?>" />
                             <td><?=$this->getDeleteCheckbox('check_teams', $team->getId()) ?></td>
@@ -31,7 +38,7 @@
                             <td><?=$this->escape($team->getTitle()) ?></td>
                         </tr>
                     <?php endforeach; ?>
-                <?php else: ?>
+                <?php else : ?>
                     <tr>
                         <td colspan="5"><?=$this->getTrans('noTeams') ?></td>
                     </tr>
@@ -40,7 +47,7 @@
         </table>
     </div>
 
-    <?php if ($this->get('teams')): ?>
+    <?php if ($this->get('teams')) : ?>
         <div class="content_savebox">
             <input type="hidden" class="content_savebox_hidden" name="action" value="" />
             <div class="btn-group dropup">
@@ -59,14 +66,14 @@
 </form>
 
 <script>
-$('table tbody').sortable({
-    handle: 'td',
-    cursorAt: { left: 15 },
-    placeholder: "table-sort-drop",
-    forcePlaceholderSize: true,
-    'start': function (event, ui) {
-        ui.placeholder.html("<td colspan='5'></td>");
-        ui.placeholder.height(ui.item.height());
-    }
-}).disableSelection();
+    $('table tbody').sortable({
+        handle: 'td',
+        cursorAt: { left: 15 },
+        placeholder: "table-sort-drop",
+        forcePlaceholderSize: true,
+        'start': function (event, ui) {
+            ui.placeholder.html("<td colspan='5'></td>");
+            ui.placeholder.height(ui.item.height());
+        }
+    }).disableSelection();
 </script>

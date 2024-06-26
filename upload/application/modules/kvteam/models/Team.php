@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @copyright Kevin Veldscholten
  * @package ilch
@@ -13,28 +14,38 @@ class Team extends \Ilch\Model
      *
      * @var int
      */
-    protected $id;
+    protected $id = 0;
 
     /**
      * The Title.
      *
      * @var string
      */
-    protected $title;
+    protected $title = '';
 
     /**
      * The User Ids.
      *
      * @var string
      */
-    protected $userIds;
+    protected $userIds = '';
 
     /**
      * The Position.
      *
      * @var int
      */
-    protected $position;
+    protected $position = 0;
+
+    /**
+     * Gets the Id.
+     *
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
 
     /**
      * Sets the Id.
@@ -42,9 +53,9 @@ class Team extends \Ilch\Model
      * @param int $id
      * @return $this
      */
-    public function setId($id)
+    public function setId(int $id): Team
     {
-        $this->id = (int)$id;
+        $this->id = $id;
 
         return $this;
     }
@@ -54,7 +65,7 @@ class Team extends \Ilch\Model
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -65,9 +76,9 @@ class Team extends \Ilch\Model
      * @param string $title
      * @return $this
      */
-    public function setTitle($title)
+    public function setTitle(string $title): Team
     {
-        $this->title = (string)$title;
+        $this->title = $title;
 
         return $this;
     }
@@ -77,7 +88,7 @@ class Team extends \Ilch\Model
      *
      * @return string
      */
-    public function getUserIds()
+    public function getUserIds(): string
     {
         return $this->userIds;
     }
@@ -87,9 +98,9 @@ class Team extends \Ilch\Model
      *
      * @param string $userIds
      */
-    public function setUserIds($userIds)
+    public function setUserIds(string $userIds)
     {
-        $this->userIds = (string)$userIds;
+        $this->userIds = $userIds;
     }
 
     /**
@@ -97,7 +108,7 @@ class Team extends \Ilch\Model
      *
      * @return int
      */
-    public function getPosition()
+    public function getPosition(): int
     {
         return $this->position;
     }
@@ -108,9 +119,9 @@ class Team extends \Ilch\Model
      * @param int $position
      * @return $this
      */
-    public function setPosition($position)
+    public function setPosition(int $position): Team
     {
-        $this->position = (int)$position;
+        $this->position = $position;
 
         return $this;
     }
