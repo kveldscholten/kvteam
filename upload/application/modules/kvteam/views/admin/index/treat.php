@@ -5,7 +5,7 @@
 /** @var Modules\Kvteam\Models\Team $team */
 $team = $this->get('team');
 ?>
-<link href="<?=$this->getModuleUrl('static/css/teams.css') ?>" rel="stylesheet">
+<link href="<?=$this->getModuleUrl('static/css/team.css') ?>" rel="stylesheet">
 
 <h1><?=$this->getTrans($team->getId() ? 'edit' : 'add') ?></h1>
 <form method="POST" action="" enctype="multipart/form-data">
