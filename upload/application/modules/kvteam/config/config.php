@@ -11,7 +11,7 @@ class Config extends \Ilch\Config\Install
 {
     public $config = [
         'key' => 'kvteam',
-        'version' => '1.3.1',
+        'version' => '1.3.2',
         'icon_small' => 'fa-solid fa-users',
         'author' => 'Veldscholten, Kevin',
         'languages' => [
@@ -24,7 +24,7 @@ class Config extends \Ilch\Config\Install
                 'description' => 'With this module you can add and change your team site.',
             ],
         ],
-        'ilchCore' => '2.2.0',
+        'ilchCore' => '2.2.4',
         'phpVersion' => '7.3'
     ];
 
