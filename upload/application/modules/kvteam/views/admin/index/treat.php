@@ -5,7 +5,7 @@
 /** @var Modules\Kvteam\Models\Team $team */
 $team = $this->get('team');
 ?>
-<link href="<?=$this->getModuleUrl('static/css/teams.css') ?>" rel="stylesheet">
+<link href="<?=$this->getModuleUrl('static/css/team.css') ?>" rel="stylesheet">
 
 <h1><?=$this->getTrans($team->getId() ? 'edit' : 'add') ?></h1>
 <form method="POST" action="" enctype="multipart/form-data">
@@ -27,7 +27,7 @@ $team = $this->get('team');
             <?=$this->getTrans('members') ?>
         </label>
         <div class="col-xl-4">
-            <select class="chosen-select form-control"
+            <select class="choices-select form-control"
                     id="userIds"
                     name="userIds[]"
                     data-placeholder="<?=$this->getTrans('selectMembers') ?>"
@@ -47,5 +47,10 @@ $team = $this->get('team');
 </form>
 
 <script>
-    $('#userIds').chosen();
+    $(document).ready(function() {
+        new Choices('#userIds', {
+            ...choicesOptions,
+            searchEnabled: true
+        })
+    });
 </script>
